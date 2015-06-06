@@ -42,15 +42,15 @@ RUN mkdir -p /opt; \
 ADD devstack.sudo /etc/sudoers.d/devstack
 RUN chown root:root /etc/sudoers.d/devstack
 
-# Local scripts
-ADD scripts /opt/dockenstack/bin
-RUN chmod 755 /opt/dockenstack/bin/*
-
 # Install devstack scripts
 RUN git clone https://github.com/openstack-dev/devstack /devstack
 
 # Install prereq packages.
 RUN /devstack/tools/install_prereqs.sh
+
+# Local scripts
+ADD scripts /opt/dockenstack/bin
+RUN chmod 755 /opt/dockenstack/bin/*
 
 # Pre-download all "NOPRIME" packages
 RUN /bin/bash /opt/dockenstack/bin/apt-cache-devstack
