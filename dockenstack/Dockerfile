@@ -22,7 +22,7 @@ RUN apt-get -qqy install git socat curl sudo vim wget net-tools
 RUN apt-get -qqy install apparmor
 
 # Extra requirements for pip-requirements
-RUN apt-get install -qqy libffi-dev libkrb5-dev libev-dev libvirt-dev pkg-config
+RUN apt-get install -qqy libffi-dev libkrb5-dev libev-dev libvirt-dev pkg-config libsqlite3-dev
 
 # Configure and install MySQL
 RUN echo 'mysql-server mysql-server/root_password password devstack' | debconf-set-selections; \
