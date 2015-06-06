@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+/opt/dockenstack/bin/setup-mounts
+
 service mysql start
 
 service rabbitmq-server start
