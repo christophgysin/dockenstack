@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+
+for _ in {0..30}; do
+    sleep 1
+    socat - unix-connect:/var/run/docker.sock \
+        <<<$'GET /v1.3/version HTTP/1.0\n\n' |
+        grep -q '200 OK' || continue
+    exit 0
+done
+
+echo "Timeout while waiting for docker!"
+exit 1
