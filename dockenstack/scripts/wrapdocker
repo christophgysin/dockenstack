@@ -29,7 +29,7 @@ do
 
         # The two following sections address a bug which manifests itself
         # by a cryptic "lxc-start: no ns_cgroup option specified" when
-        # trying to start containers withina container.
+        # trying to start containers within a container.
         # The bug seems to appear when the cgroup hierarchies are not
         # mounted on the exact same directories in the host, and in the
         # container.
