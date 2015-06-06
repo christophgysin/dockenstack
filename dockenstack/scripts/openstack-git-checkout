@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eu
 
-# Embarrassingly bad shell scripting below (because one 'eval' isn't enough!)
 cd /devstack
 . functions
 . stackrc
@@ -13,4 +12,14 @@ BM_POSEUR_DIR=/opt/stack/bm_poseur
 
 HEAT_CONF_DIR=/opt/stack/heat
 
-cat <(echo ". functions; . stackrc") <(for project in $(declare | sed -n '/_REPO=/{ s/^\(.*\)_REPO=.*/\1/; p; }'); do eval "echo git_clone \$${project}_REPO $(git grep -h ${project}_DIR= | sed 's/.*=//') \$${project}_BRANCH \|\| :";  done | grep git.openstack.org) | bash
+projects=$(declare | sed -n 's/^\(.*\)_REPO=.*/\1/p')
+
+for project in ${projects}; do
+    eval repo=\$${project}_REPO
+    eval branch=\$${project}_BRANCH
+    eval dir=$(git grep -h ${project}_DIR= | sed 's/.*=//')
+
+    if [[ ${repo} =~ git.openstack.org ]]; then
+        git_clone ${repo} ${dir} ${branch} || :
+    fi
+done
