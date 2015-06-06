@@ -10,12 +10,13 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install Docker
 RUN apt-key adv --keyserver "hkp://keyserver.ubuntu.com:80" --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9; \
+    apt-get install -qqy apt-transport-https; \
     echo 'deb http://get.docker.io/ubuntu docker main' > /etc/apt/sources.list.d/docker.list; \
     apt-get update; \
     apt-get install -qqy lxc-docker
 
 # Install utilities
-RUN apt-get -qqy install git socat curl sudo apt-transport-https vim wget net-tools
+RUN apt-get -qqy install git socat curl sudo vim wget net-tools
 
 # Install apparmor
 RUN apt-get -qqy install apparmor
