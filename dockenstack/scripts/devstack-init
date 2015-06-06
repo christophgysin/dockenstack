@@ -4,7 +4,7 @@ service mysql start
 
 service rabbitmq-server start
 
-/opt/dockenstack/bin/wrapdocker 
+/opt/dockenstack/bin/wrapdocker
 
 # Matches the fixed range in the devstack localrc
 ifconfig eth0:1 inet 10.1.0.1/24
