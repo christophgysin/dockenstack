@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-mysqld_safe &
+service mysql start
 
 service rabbitmq-server start
 
