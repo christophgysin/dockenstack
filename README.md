@@ -34,6 +34,7 @@ git clone https://github.com/ewindisch/dockenstack.git
 cd dockenstack
 docker build -t ewindisch/dockenstack dockenstack
 docker build -t ewindisch/dockenstack-tempest dockenstack-tempest
+modprobe loop bridge nf_nat
 docker run --privileged -t -i ewindisch/dockenstack
 ```
 
