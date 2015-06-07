@@ -89,4 +89,7 @@ WORKDIR /
 # Fix ownership of all files
 RUN chown -R devstack /devstack
 
+# remove python-marconiclient, it conflicts with python-zaqarclient
+RUN pip uninstall python-marconiclient
+
 CMD ["/opt/dockenstack/bin/start"]
