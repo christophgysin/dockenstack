@@ -43,7 +43,7 @@ If you've started dockenstack interactively without extra arguments, you'll end 
 
 ```
 source /devstack/openrc
-nova boot --image busybox --flavor 1 test
+nova boot --image cirros --flavor 1 test
 nova list
 docker ps
 ```
