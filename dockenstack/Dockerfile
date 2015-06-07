@@ -90,6 +90,9 @@ WORKDIR /
 RUN chown -R devstack /devstack
 
 # remove python-marconiclient, it conflicts with python-zaqarclient
-RUN pip uninstall python-marconiclient
+RUN pip uninstall -y python-marconiclient
+
+# fix docker startup script
+RUN sed -i 's/start-stop-daemon --stop/\0 --retry 2/' /etc/init.d/docker
 
 CMD ["/opt/dockenstack/bin/start"]
